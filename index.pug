@@ -1,0 +1,42 @@
+extends layout.pug
+
+block content
+	section.container
+		article.item
+			div
+				a.button.add(href="/agregar") Добавить
+				
+			if(data.length)
+				table.table
+					tr
+						th Имя
+						th Фамилия
+						th Отчество
+						th Год рождения
+						th Телефон
+						th Email
+						th
+						th
+							//- Оставляем два th в конце
+					each contacto in data
+						tr
+							td #{contacto.name}
+							td #{contacto.surname}
+							td #{contacto.otch}
+							td #{contacto.birthday}
+							td #{contacto.tel}
+							td #{contacto.e_mail}
+							td
+								a.button.edit(href="/editar/" + contacto._id) Изменить
+							
+							td
+								form(method="post", action="/eliminar/" + contacto._id)
+									input.button.delete(type="button", value="Удалить", onclick="eliminar(this)")
+									input(type="hidden", name="_method", value="DELETE")
+				script.
+					function eliminar(input) {
+						var deleteOk = confirm('Вы действительно хотите удалить эту запись?');
+						return (deleteOk) ? input.parentNode.submit() : false;
+					}
+			else
+				div.error У вас нет контактов для отображения

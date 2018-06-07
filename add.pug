@@ -1,0 +1,24 @@
+extends layout.pug
+
+block content
+	section.container
+		h1.header= title
+		article.item
+			form.form(method="post", action="/")
+				fieldset
+					div
+						input(type="text", name="name", placeholder="имя", required)
+					div
+						input(type="text", name="surname", placeholder="фамилия", required)
+					div
+						input(type="text", name="otch", placeholder="отчество", required)
+					div
+						input(type="text", name="birthday", placeholder="год рождения", required)
+					
+					div
+						input(type="text", name="tel", placeholder="телефон", required)
+					div
+						input(type="text", name="e_mail", placeholder="e_mail", required)
+					div
+						input.button.add(type="submit", value="Добавить")
+		a.button.show(href="/") Назад

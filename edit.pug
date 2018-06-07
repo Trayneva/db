@@ -1,0 +1,26 @@
+extends layout.pug
+
+block content
+	section.container
+		h1.header= title
+		article.item
+			form.form(method="post", action="/actualizar/" + data._id)
+				input(type="hidden", name="_method", value="PUT")
+				input(type="hidden", name="_id", value=data._id.toString())
+				fieldset
+					div
+						input(type="text", name="name", placeholder="Имя", value=data.name, required)
+					div
+						input(type="text", name="surname", placeholder="Фамилия", value=data.surname, required)
+					div   
+						input(type="text", name="otch", placeholder="Отчество", value=data.otch, required)
+					div
+						input(type="text", name="birthday", placeholder="Год рождения", value=data.birthday, required)
+					
+					div
+						input(type="text", name="tel", placeholder="Телефон", value=data.tel, required)
+					div
+						input(type="text", name="e_mail", placeholder="e_mail", value=data.e_mail, required)
+					div
+						input.button.edit(type="submit", value="Изменить")
+		a.button.show(href="/") Назад
